@@ -9,17 +9,12 @@ def _rust_proto_lib_impl(ctx):
     """Generate a lib.rs file for the crates."""
     compilation = ctx.attr.compilation[ProtoCompileInfo]
 
-    # Add externs
     content = []
-    for extern in ctx.attr.externs:
-        content.append("extern crate {};".format(extern))
-    content.append("")  # Newline
 
     # List each output from protoc
     srcs = [f for f in compilation.output_files.to_list()]
     for f in srcs:
-        content.append("pub mod %s;" % _strip_extension(f))
-        content.append("pub use %s::*;" % _strip_extension(f))
+        content.append('include!("%s");' % f.basename)
 
     # Write file
     lib_rs = ctx.actions.declare_file("%s/lib.rs" % compilation.label.name)
@@ -38,9 +33,6 @@ rust_proto_lib = rule(
     attrs = {
         "compilation": attr.label(
             providers = [ProtoCompileInfo],
-            mandatory = True,
-        ),
-        "externs": attr.string_list(
             mandatory = True,
         ),
     },

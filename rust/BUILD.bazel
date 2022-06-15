@@ -1,26 +1,22 @@
 load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "rust_plugin",
+    name = "rust_prost_plugin",
     exclusions = [
         "google/protobuf",
     ],
-    # Use the proto basename and pipe the value to the rust_keyword function.
-    # Ths function will append '_pb' if the basename is a rust keyword.
-    outputs = ["{basename|rust_keyword}.rs"],
-    tool = "//rust/raze:cargo_bin_protoc_gen_rust",
+    outputs = ["{basename}.rs"],
+    tool = "//rust/raze:cargo_bin_protoc_gen_prost",
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
-    name = "grpc_rust_plugin",
-    empty_template = "empty.template",
+    name = "rust_tonic_plugin",
     exclusions = [
         "google/protobuf",
     ],
-    # Use the proto basename and pipe the value to the rust_keyword function.
-    # Ths function will append '_pb' if the basename is a rust keyword.
-    outputs = ["{basename|rust_keyword}_grpc.rs"],
-    tool = "//rust/raze:cargo_bin_protoc_gen_rust_grpc",
+    options = ["no_insert_include"],
+    outputs = ["{basename}.tonic.rs"],
+    tool = "//rust/raze:cargo_bin_protoc_gen_tonic",
     visibility = ["//visibility:public"],
 )

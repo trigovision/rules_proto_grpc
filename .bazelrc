@@ -1,0 +1,5 @@
+build --compilation_mode=opt
+build --strip=never
+
+build --repo_env=RULES_RUST_TOOLCHAIN_INCLUDE_RUSTC_SRCS=true
+build --experimental_proto_descriptor_sets_include_source_info
