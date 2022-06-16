@@ -35,8 +35,8 @@ var rustProstProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStri
         name = name,
         edition = "2018",
         srcs = [name_pb, name_lib],
-        deps = kwargs.get("prost_deps", [Label("//rust/raze:prost"), Label("//rust/raze:prost_types")]) + kwargs.get("deps", []),
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/raze:prost_derive"))],
+        deps = kwargs.get("prost_deps", [Label("@crate_index//:prost"), Label("@crate_index//:prost-types")]) + kwargs.get("deps", []),
+        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("@crate_index//:prost-derive"))],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -54,10 +54,10 @@ var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStrin
         name = name,
         edition = "2018",
         srcs = [name_pb, name_lib],
-        deps = kwargs.get("prost_deps", [Label("//rust/raze:prost"), Label("//rust/raze:prost_types")]) +
-          [kwargs.get("tonic_dep", Label("//rust/raze:tonic"))] +
+        deps = kwargs.get("prost_deps", [Label("@crate_index//:prost"), Label("@crate_index//:prost-types")]) +
+          [kwargs.get("tonic_dep", Label("@crate_index//:tonic"))] +
           kwargs.get("deps", []),
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/raze:prost_derive"))],
+        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("@crate_index//:prost-derive"))],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -89,14 +89,14 @@ var rustProstLibraryRuleAttrs = append(append([]*Attr{}, libraryRuleAttrs...), [
 	&Attr{
 		Name:      "prost_deps",
 		Type:      "label_list",
-		Default:   `["@rules_proto_grpc//rust/raze:prost", "@rules_proto_grpc//rust/raze:prost_types"]`,
+		Default:   `["@crate_index//:prost", "@crate_index//:prost-types"]`,
 		Doc:       "The prost dependencies that the rust library should depend on.",
 		Mandatory: false,
 	},
 	&Attr{
 		Name:      "prost_derive_dep",
 		Type:      "label",
-		Default:   `@rules_proto_grpc//rust/raze:prost_derive`,
+		Default:   `@crate_index//:prost-derive`,
 		Doc:       "The prost-derive dependency that the rust library should depend on.",
 		Mandatory: false,
 	},
@@ -106,7 +106,7 @@ var rustTonicLibraryRuleAttrs = append(append([]*Attr{}, rustProstLibraryRuleAtt
 	&Attr{
 		Name:      "tonic_dep",
 		Type:      "label",
-		Default:   `@rules_proto_grpc//rust/raze:tonic`,
+		Default:   `@crate_index//:tonic`,
 		Doc:       "The tonic dependency that the rust library should depend on.",
 		Mandatory: false,
 	},

@@ -6,7 +6,7 @@
 Rust
 ====
 
-Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `prost <https://github.com/tokio-rs/prost>`_ and `tonic <https://github.com/hyperium/tonic>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_.
+Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `prost <https://github.com/tokio-rs/prost>`_ and `tonic <https://github.com/hyperium/tonic>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Requires ``--experimental_proto_descriptor_sets_include_source_info`` to be set for the build.
 
 .. list-table:: Rules
    :widths: 1 2
@@ -315,12 +315,12 @@ Attributes
    * - ``prost_deps``
      - ``label_list``
      - false
-     - ``["@rules_proto_grpc//rust/raze:prost", "@rules_proto_grpc//rust/raze:prost_types"]``
+     - ``["@rules_proto_grpc_crates//:prost", "@rules_proto_grpc_crates//:prost-types"]``
      - The prost dependencies that the rust library should depend on.
    * - ``prost_derive_dep``
      - ``label``
      - false
-     - ``@rules_proto_grpc//rust/raze:prost_derive``
+     - ``@rules_proto_grpc_crates//:prost-derive``
      - The prost-derive dependency that the rust library should depend on.
 
 .. _rust_tonic_grpc_library:
@@ -418,15 +418,15 @@ Attributes
    * - ``prost_deps``
      - ``label_list``
      - false
-     - ``["@rules_proto_grpc//rust/raze:prost", "@rules_proto_grpc//rust/raze:prost_types"]``
+     - ``["@rules_proto_grpc_crates//:prost", "@rules_proto_grpc_crates//:prost-types"]``
      - The prost dependencies that the rust library should depend on.
    * - ``prost_derive_dep``
      - ``label``
      - false
-     - ``@rules_proto_grpc//rust/raze:prost_derive``
+     - ``@rules_proto_grpc_crates//:prost-derive``
      - The prost-derive dependency that the rust library should depend on.
    * - ``tonic_dep``
      - ``label``
      - false
-     - ``@rules_proto_grpc//rust/raze:tonic``
+     - ``@rules_proto_grpc_crates//:tonic``
      - The tonic dependency that the rust library should depend on.

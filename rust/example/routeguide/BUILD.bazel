@@ -19,11 +19,11 @@ rust_binary(
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@rules_proto_grpc//rust/raze:async_stream",
-        "@rules_proto_grpc//rust/raze:futures",
-        "@rules_proto_grpc//rust/raze:rand",
-        "@rules_proto_grpc//rust/raze:tokio",
-        "@rules_proto_grpc//rust/raze:tonic",
+        "@crate_index//:async-stream",
+        "@crate_index//:futures",
+        "@crate_index//:rand",
+        "@crate_index//:tokio",
+        "@crate_index//:tonic",
     ],
 )
 
@@ -38,12 +38,12 @@ rust_binary(
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@rules_proto_grpc//rust/raze:async_stream",
-        "@rules_proto_grpc//rust/raze:futures",
-        "@rules_proto_grpc//rust/raze:serde",
-        "@rules_proto_grpc//rust/raze:serde_json",
-        "@rules_proto_grpc//rust/raze:tokio",
-        "@rules_proto_grpc//rust/raze:tokio_stream",
-        "@rules_proto_grpc//rust/raze:tonic",
+        "@crate_index//:async-stream",
+        "@crate_index//:futures",
+        "@crate_index//:serde",
+        "@crate_index//:serde_json",
+        "@crate_index//:tokio",
+        "@crate_index//:tokio-stream",
+        "@crate_index//:tonic",
     ],
 )

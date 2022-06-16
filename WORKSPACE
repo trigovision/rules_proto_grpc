@@ -242,9 +242,19 @@ load("//rust:repositories.bzl", "rust_repos")
 
 rust_repos()
 
-load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
-rust_repositories()
+rules_rust_dependencies()
+
+rust_register_toolchains()
+
+load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+
+crate_universe_dependencies()
+
+load( "//rust/crates:crates.bzl", "crate_repositories")
+
+crate_repositories()
 
 #
 # Scala

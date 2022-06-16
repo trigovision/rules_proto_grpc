@@ -29,10 +29,11 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
         name = name,
         edition = "2018",
         srcs = [name_pb, name_lib],
-        deps = kwargs.get("prost_deps", [Label("//rust/raze:prost"), Label("//rust/raze:prost_types")]) +
-               [kwargs.get("tonic_dep", Label("//rust/raze:tonic"))] +
-               kwargs.get("deps", []),
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/raze:prost_derive"))],
+        deps = kwargs.get("prost_deps", [Label("@crate_index//:prost"), Label("@crate_index//:prost-types")]) +
+          [kwargs.get("tonic_dep", Label("@crate_index//:tonic"))] +
+          kwargs.get("deps", []),
+        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("@crate_index//:prost-derive"))],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
+

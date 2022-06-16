@@ -1,4 +1,5 @@
 load("//:defs.bzl", "proto_plugin")
+load("@rules_rust//crate_universe:defs.bzl", "crate", "crates_vendor")
 
 proto_plugin(
     name = "rust_prost_plugin",
@@ -6,7 +7,7 @@ proto_plugin(
         "google/protobuf",
     ],
     outputs = ["{basename}.rs"],
-    tool = "//rust/raze:cargo_bin_protoc_gen_prost",
+    tool = "@crate_index//:protoc-gen-prost__protoc-gen-prost",
     visibility = ["//visibility:public"],
 )
 
@@ -17,6 +18,78 @@ proto_plugin(
     ],
     options = ["no_insert_include"],
     outputs = ["{basename}.tonic.rs"],
-    tool = "//rust/raze:cargo_bin_protoc_gen_tonic",
+    tool = "@crate_index//:protoc-gen-tonic__protoc-gen-tonic",
     visibility = ["//visibility:public"],
+)
+
+crates_vendor(
+    name = "crates_vendor",
+    mode = "remote",
+    packages = {
+        "protoc-gen-prost": crate.spec(
+            git = "https://github.com/titanous/protoc-gen-prost",
+            rev = "4648793ae8207d35acb9310d04f6a31d86b9d9f6",
+        ),
+        "protoc-gen-tonic": crate.spec(
+            git = "https://github.com/titanous/protoc-gen-prost",
+            rev = "4648793ae8207d35acb9310d04f6a31d86b9d9f6",
+        ),
+        "prost": crate.spec(
+            version = "0.10.4",
+        ),
+        "prost-derive": crate.spec(
+            version = "0.10.1",
+        ),
+        "prost-types": crate.spec(
+            version = "0.10.1",
+        ),
+        "tonic": crate.spec(
+            features = ["compression"],
+            version = "0.7.2",
+        ),
+        "tonic-build": crate.spec(
+            features = [
+                "prost",
+                "compression",
+            ],
+            version = "0.7.2",
+        ),
+
+        # routeguide example deps
+        "serde": crate.spec(
+            features = ["derive"],
+            version = "1.0.81",
+        ),
+        "serde_json": crate.spec(
+            version = "1.0.81",
+        ),
+        "rand": crate.spec(
+            version = "0.8.5",
+        ),
+        "tokio": crate.spec(
+            version = "1.19.2",
+        ),
+        "tokio-stream": crate.spec(
+            version = "0.1.9",
+        ),
+        "async-stream": crate.spec(
+            version = "0.3.3",
+        ),
+        "futures": crate.spec(
+            version = "0.3.21",
+        ),
+    },
+    annotations = {
+        "prost-build": [crate.annotation(
+            build_script_tools = ["@com_google_protobuf//:protoc"],
+            build_script_env = {
+                "PROTOC_NO_VENDOR": "true",
+                "PROTOC":"$(execpath @com_google_protobuf//:protoc)",
+                "PROTOC_INCLUDE": ".",
+            },
+        )],
+    },
+    tags = ["manual"],
+    vendor_path = "crates",
+    repository_name = "crate_index",
 )
