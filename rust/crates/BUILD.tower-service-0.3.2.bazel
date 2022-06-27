@@ -24,7 +24,7 @@ package(default_visibility = ["//visibility:public"])
 # ])
 
 rust_library(
-    name = "axum_core",
+    name = "tower_service",
     srcs = glob(
         include = [
             "**/*.rs",
@@ -51,7 +51,6 @@ rust_library(
     proc_macro_deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__async-trait-0.1.56//:async_trait",
         ],
     }),
     rustc_env = {
@@ -73,15 +72,10 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.2.5",
+    version = "0.3.2",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__bytes-1.1.0//:bytes",
-            "@crate_index__futures-util-0.3.21//:futures_util",
-            "@crate_index__http-0.2.8//:http",
-            "@crate_index__http-body-0.4.5//:http_body",
-            "@crate_index__mime-0.3.16//:mime",
         ],
     }),
 )

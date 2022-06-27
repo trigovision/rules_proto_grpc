@@ -76,7 +76,7 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.8.3",
+    version = "0.8.4",
     deps = [
     ] + select_with_or({
         # cfg(target_os = "wasi")

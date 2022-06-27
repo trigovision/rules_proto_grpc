@@ -88,9 +88,9 @@ rust_library(
             "@crate_index__http-body-0.4.5//:http_body",
             "@crate_index__http-range-header-0.3.0//:http_range_header",
             "@crate_index__pin-project-lite-0.2.9//:pin_project_lite",
-            "@crate_index__tower-0.4.12//:tower",
+            "@crate_index__tower-0.4.13//:tower",
             "@crate_index__tower-layer-0.3.1//:tower_layer",
-            "@crate_index__tower-service-0.3.1//:tower_service",
+            "@crate_index__tower-service-0.3.2//:tower_service",
         ],
     }),
 )

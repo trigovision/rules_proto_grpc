@@ -87,13 +87,13 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "1.0.96",
+    version = "1.0.98",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__proc-macro2-1.0.39//:proc_macro2",
-            "@crate_index__quote-1.0.18//:quote",
-            "@crate_index__syn-1.0.96//:build_script_build",
+            "@crate_index__proc-macro2-1.0.40//:proc_macro2",
+            "@crate_index__quote-1.0.20//:quote",
+            "@crate_index__syn-1.0.98//:build_script_build",
             "@crate_index__unicode-ident-1.0.1//:unicode_ident",
         ],
     }),
@@ -167,7 +167,7 @@ cargo_build_script(
         "//conditions:default": [
         ],
     }),
-    version = "1.0.96",
+    version = "1.0.98",
     visibility = ["//visibility:private"],
     deps = [
     ] + select_with_or({

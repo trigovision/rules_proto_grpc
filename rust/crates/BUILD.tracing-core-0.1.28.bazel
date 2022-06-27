@@ -24,7 +24,7 @@ package(default_visibility = ["//visibility:public"])
 # ])
 
 rust_library(
-    name = "tower",
+    name = "tracing_core",
     srcs = glob(
         include = [
             "**/*.rs",
@@ -41,28 +41,8 @@ rust_library(
         ],
     }),
     crate_features = [
-        "__common",
-        "balance",
-        "buffer",
-        "default",
-        "discover",
-        "futures-core",
-        "futures-util",
-        "indexmap",
-        "limit",
-        "load",
-        "log",
-        "make",
-        "pin-project",
-        "pin-project-lite",
-        "rand",
-        "ready-cache",
-        "slab",
-        "timeout",
-        "tokio",
-        "tokio-util",
-        "tracing",
-        "util",
+        "once_cell",
+        "std",
     ],
     crate_root = "src/lib.rs",
     data = select_with_or({
@@ -94,22 +74,11 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.4.12",
+    version = "0.1.28",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__futures-core-0.3.21//:futures_core",
-            "@crate_index__futures-util-0.3.21//:futures_util",
-            "@crate_index__indexmap-1.8.2//:indexmap",
-            "@crate_index__pin-project-1.0.10//:pin_project",
-            "@crate_index__pin-project-lite-0.2.9//:pin_project_lite",
-            "@crate_index__rand-0.8.5//:rand",
-            "@crate_index__slab-0.4.6//:slab",
-            "@crate_index__tokio-1.19.2//:tokio",
-            "@crate_index__tokio-util-0.7.3//:tokio_util",
-            "@crate_index__tower-layer-0.3.1//:tower_layer",
-            "@crate_index__tower-service-0.3.1//:tower_service",
-            "@crate_index__tracing-0.1.35//:tracing",
+            "@crate_index__once_cell-1.12.0//:once_cell",
         ],
     }),
 )

@@ -76,11 +76,11 @@ rust_proc_macro(
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__anyhow-1.0.57//:anyhow",
+            "@crate_index__anyhow-1.0.58//:anyhow",
             "@crate_index__itertools-0.10.3//:itertools",
-            "@crate_index__proc-macro2-1.0.39//:proc_macro2",
-            "@crate_index__quote-1.0.18//:quote",
-            "@crate_index__syn-1.0.96//:syn",
+            "@crate_index__proc-macro2-1.0.40//:proc_macro2",
+            "@crate_index__quote-1.0.20//:quote",
+            "@crate_index__syn-1.0.98//:syn",
         ],
     }),
 )

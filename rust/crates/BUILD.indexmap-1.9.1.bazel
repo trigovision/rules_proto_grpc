@@ -24,7 +24,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 # licenses([
-#     "TODO",  # Apache-2.0/MIT
+#     "TODO",  # Apache-2.0 OR MIT
 # ])
 
 rust_library(
@@ -52,7 +52,7 @@ rust_library(
         "//conditions:default": [
         ],
     }),
-    edition = "2018",
+    edition = "2021",
     proc_macro_deps = [
     ] + select_with_or({
         "//conditions:default": [
@@ -77,12 +77,12 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "1.8.2",
+    version = "1.9.1",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__hashbrown-0.11.2//:hashbrown",
-            "@crate_index__indexmap-1.8.2//:build_script_build",
+            "@crate_index__hashbrown-0.12.1//:hashbrown",
+            "@crate_index__indexmap-1.9.1//:build_script_build",
         ],
     }),
 )
@@ -116,7 +116,7 @@ cargo_build_script(
         "//conditions:default": [
         ],
     }),
-    edition = "2018",
+    edition = "2021",
     proc_macro_deps = [
     ] + select_with_or({
         "//conditions:default": [
@@ -145,7 +145,7 @@ cargo_build_script(
         "//conditions:default": [
         ],
     }),
-    version = "1.8.2",
+    version = "1.9.1",
     visibility = ["//visibility:private"],
     deps = [
     ] + select_with_or({

@@ -47,7 +47,7 @@ rust_library(
         "//conditions:default": [
         ],
     }),
-    edition = "2018",
+    edition = "2021",
     proc_macro_deps = [
     ] + select_with_or({
         "//conditions:default": [
@@ -73,11 +73,11 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.5.7",
+    version = "0.5.9",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__axum-core-0.2.5//:axum_core",
+            "@crate_index__axum-core-0.2.6//:axum_core",
             "@crate_index__bitflags-1.3.2//:bitflags",
             "@crate_index__bytes-1.1.0//:bytes",
             "@crate_index__futures-util-0.3.21//:futures_util",
@@ -93,10 +93,10 @@ rust_library(
             "@crate_index__serde-1.0.137//:serde",
             "@crate_index__sync_wrapper-0.1.1//:sync_wrapper",
             "@crate_index__tokio-1.19.2//:tokio",
-            "@crate_index__tower-0.4.12//:tower",
+            "@crate_index__tower-0.4.13//:tower",
             "@crate_index__tower-http-0.3.4//:tower_http",
             "@crate_index__tower-layer-0.3.1//:tower_layer",
-            "@crate_index__tower-service-0.3.1//:tower_service",
+            "@crate_index__tower-service-0.3.2//:tower_service",
         ],
     }),
 )

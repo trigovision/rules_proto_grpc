@@ -120,7 +120,7 @@ rust_library(
             # Common Deps
             "@crate_index__bytes-1.1.0//:bytes",
             "@crate_index__memchr-2.5.0//:memchr",
-            "@crate_index__mio-0.8.3//:mio",
+            "@crate_index__mio-0.8.4//:mio",
             "@crate_index__once_cell-1.12.0//:once_cell",
             "@crate_index__pin-project-lite-0.2.9//:pin_project_lite",
             "@crate_index__socket2-0.4.4//:socket2",
@@ -136,7 +136,7 @@ rust_library(
             # Common Deps
             "@crate_index__bytes-1.1.0//:bytes",
             "@crate_index__memchr-2.5.0//:memchr",
-            "@crate_index__mio-0.8.3//:mio",
+            "@crate_index__mio-0.8.4//:mio",
             "@crate_index__once_cell-1.12.0//:once_cell",
             "@crate_index__pin-project-lite-0.2.9//:pin_project_lite",
             "@crate_index__socket2-0.4.4//:socket2",
@@ -144,7 +144,7 @@ rust_library(
         "//conditions:default": [
             "@crate_index__bytes-1.1.0//:bytes",
             "@crate_index__memchr-2.5.0//:memchr",
-            "@crate_index__mio-0.8.3//:mio",
+            "@crate_index__mio-0.8.4//:mio",
             "@crate_index__once_cell-1.12.0//:once_cell",
             "@crate_index__pin-project-lite-0.2.9//:pin_project_lite",
             "@crate_index__socket2-0.4.4//:socket2",

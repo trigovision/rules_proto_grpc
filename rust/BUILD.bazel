@@ -16,7 +16,7 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
-    options = ["no_insert_include"],
+    options = ["no_include=true"],
     outputs = ["{basename}.tonic.rs"],
     tool = "@crate_index//:protoc-gen-tonic__protoc-gen-tonic",
     visibility = ["//visibility:public"],
@@ -28,11 +28,11 @@ crates_vendor(
     packages = {
         "protoc-gen-prost": crate.spec(
             git = "https://github.com/titanous/protoc-gen-prost",
-            rev = "4648793ae8207d35acb9310d04f6a31d86b9d9f6",
+            rev = "706af00ca1df7a8b2f2d77d2bac749144e584e7c",
         ),
         "protoc-gen-tonic": crate.spec(
             git = "https://github.com/titanous/protoc-gen-prost",
-            rev = "4648793ae8207d35acb9310d04f6a31d86b9d9f6",
+            rev = "706af00ca1df7a8b2f2d77d2bac749144e584e7c",
         ),
         "prost": crate.spec(
             version = "0.10.4",

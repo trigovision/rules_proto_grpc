@@ -20,11 +20,11 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 # licenses([
-#     "TODO",  # MIT OR Apache-2.0
+#     "TODO",  # MIT
 # ])
 
 rust_library(
-    name = "prettyplease",
+    name = "axum_core",
     srcs = glob(
         include = [
             "**/*.rs",
@@ -51,6 +51,7 @@ rust_library(
     proc_macro_deps = [
     ] + select_with_or({
         "//conditions:default": [
+            "@crate_index__async-trait-0.1.56//:async_trait",
         ],
     }),
     rustc_env = {
@@ -72,12 +73,15 @@ rust_library(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.1.11",
+    version = "0.2.6",
     deps = [
     ] + select_with_or({
         "//conditions:default": [
-            "@crate_index__proc-macro2-1.0.39//:proc_macro2",
-            "@crate_index__syn-1.0.96//:syn",
+            "@crate_index__bytes-1.1.0//:bytes",
+            "@crate_index__futures-util-0.3.21//:futures_util",
+            "@crate_index__http-0.2.8//:http",
+            "@crate_index__http-body-0.4.5//:http_body",
+            "@crate_index__mime-0.3.16//:mime",
         ],
     }),
 )

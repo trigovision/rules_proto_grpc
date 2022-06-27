@@ -82,7 +82,7 @@ rust_library(
             "@crate_index__futures-sink-0.3.21//:futures_sink",
             "@crate_index__futures-util-0.3.21//:futures_util",
             "@crate_index__http-0.2.8//:http",
-            "@crate_index__indexmap-1.8.2//:indexmap",
+            "@crate_index__indexmap-1.9.1//:indexmap",
             "@crate_index__slab-0.4.6//:slab",
             "@crate_index__tokio-1.19.2//:tokio",
             "@crate_index__tokio-util-0.7.3//:tokio_util",
