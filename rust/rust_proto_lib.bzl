@@ -20,7 +20,18 @@ def _rust_proto_lib_impl(ctx):
     lib_rs = ctx.actions.declare_file("%s/lib.rs" % compilation.label.name)
     ctx.actions.write(
         lib_rs,
-        "\n".join(content) + "\n",
+        """
+        pub mod google {
+            pub mod api {
+                include!("google.api.rs");
+            }
+        }
+
+        pub mod capture_storage {
+            include!("capture_storage.rs");
+            include!("capture_storage.tonic.rs");
+        }
+        """,
         False,
     )
 

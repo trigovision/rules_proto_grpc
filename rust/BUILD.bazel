@@ -6,7 +6,9 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
+    # output_directory = True,
     outputs = ["{basename}.rs"],
+    # empty_template="hello",
     tool = "@crate_index//:protoc-gen-prost__protoc-gen-prost",
     visibility = ["//visibility:public"],
 )
@@ -17,6 +19,8 @@ proto_plugin(
         "google/protobuf",
     ],
     options = ["no_include=true"],
+    # output_directory = True,
+    # empty_template="hello",
     outputs = ["{basename}.tonic.rs"],
     tool = "@crate_index//:protoc-gen-tonic__protoc-gen-tonic",
     visibility = ["//visibility:public"],
@@ -24,6 +28,16 @@ proto_plugin(
 
 crates_vendor(
     name = "crates_vendor",
+    annotations = {
+        "prost-build": [crate.annotation(
+            build_script_env = {
+                "PROTOC_NO_VENDOR": "true",
+                "PROTOC": "$(execpath @com_google_protobuf//:protoc)",
+                "PROTOC_INCLUDE": ".",
+            },
+            build_script_tools = ["@com_google_protobuf//:protoc"],
+        )],
+    },
     mode = "remote",
     packages = {
         "protoc-gen-prost": crate.spec(
@@ -79,17 +93,7 @@ crates_vendor(
             version = "0.3.21",
         ),
     },
-    annotations = {
-        "prost-build": [crate.annotation(
-            build_script_tools = ["@com_google_protobuf//:protoc"],
-            build_script_env = {
-                "PROTOC_NO_VENDOR": "true",
-                "PROTOC":"$(execpath @com_google_protobuf//:protoc)",
-                "PROTOC_INCLUDE": ".",
-            },
-        )],
-    },
+    repository_name = "crate_index",
     tags = ["manual"],
     vendor_path = "crates",
-    repository_name = "crate_index",
 )

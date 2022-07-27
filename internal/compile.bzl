@@ -165,6 +165,20 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
                 # Add per-proto outputs
                 for pattern in plugin.outputs:
+                    if "http.tonic.rs" in get_output_filename(proto, pattern, proto_info):
+                        continue
+                    if "http.rs" in get_output_filename(proto, pattern, proto_info):
+                        plugin_outputs.append(ctx.actions.declare_file("{}/{}".format(
+                            rel_premerge_root,
+                            "google.api.rs",
+                        )))
+                        continue
+                    if "annotations." in get_output_filename(proto, pattern, proto_info):
+                        print("wheeeeee")
+                        continue
+                    if "httpbody." in get_output_filename(proto, pattern, proto_info):
+                        print("wheeeeee")
+                        continue
                     plugin_outputs.append(ctx.actions.declare_file("{}/{}".format(
                         rel_premerge_root,
                         get_output_filename(proto, pattern, proto_info),
