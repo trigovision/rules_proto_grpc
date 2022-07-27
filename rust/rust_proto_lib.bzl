@@ -9,31 +9,21 @@ def _rust_proto_lib_impl(ctx):
     """Generate a lib.rs file for the crates."""
     compilation = ctx.attr.compilation[ProtoCompileInfo]
 
-    content = []
+    lib_rs = ctx.actions.declare_file("lib.rs")
 
-    # List each output from protoc
-    srcs = [f for f in compilation.output_files.to_list()]
-    for f in srcs:
-        content.append('include!("%s");' % f.basename)
+    b = compilation.output_dirs.to_list()[0]
+    f = ctx.attr.lib.files.to_list()[0]
 
-    # Write file
-    lib_rs = ctx.actions.declare_file("%s/lib.rs" % compilation.label.name)
-    ctx.actions.write(
-        lib_rs,
-        """
-        pub mod google {
-            pub mod api {
-                include!("google.api.rs");
-            }
-        }
+    if ctx.attr.lib != None:
+        ctx.actions.run_shell(
+            inputs = [f],
+            outputs = [lib_rs],
+            command = "sed 's/include!(\"/include!(\"%s\\//g' '%s' > '%s'" % (b.basename, f.path, lib_rs.path)
+        )
+    else:
+        # TODO: restore old include behavior
+        ctx.actions.write(lib_rs, "")
 
-        pub mod capture_storage {
-            include!("capture_storage.rs");
-            include!("capture_storage.tonic.rs");
-        }
-        """,
-        False,
-    )
 
     return [DefaultInfo(
         files = depset([lib_rs]),
@@ -45,6 +35,10 @@ rust_proto_lib = rule(
         "compilation": attr.label(
             providers = [ProtoCompileInfo],
             mandatory = True,
+        ),
+        "lib": attr.label(
+            allow_single_file=True,
+            mandatory = False,
         ),
     },
 )

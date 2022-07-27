@@ -22,6 +22,7 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
+        lib = kwargs.get("lib")
     )
 
     # Create rust_tonic library

@@ -6,9 +6,7 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
-    # output_directory = True,
-    outputs = ["{basename}.rs"],
-    # empty_template="hello",
+    output_directory = True,
     tool = "@crate_index//:protoc-gen-prost__protoc-gen-prost",
     visibility = ["//visibility:public"],
 )
@@ -19,9 +17,7 @@ proto_plugin(
         "google/protobuf",
     ],
     options = ["no_include=true"],
-    # output_directory = True,
-    # empty_template="hello",
-    outputs = ["{basename}.tonic.rs"],
+    output_directory = True,
     tool = "@crate_index//:protoc-gen-tonic__protoc-gen-tonic",
     visibility = ["//visibility:public"],
 )
