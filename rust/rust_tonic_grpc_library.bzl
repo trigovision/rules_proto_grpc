@@ -36,5 +36,6 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
         proc_macro_deps = [kwargs.get("prost_derive_dep", Label("@crate_index//:prost-derive"))],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
+        crate_features = kwargs.get("crate_features"),
     )
 
