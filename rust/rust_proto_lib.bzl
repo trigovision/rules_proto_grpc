@@ -9,7 +9,7 @@ def _rust_proto_lib_impl(ctx):
     """Generate a lib.rs file for the crates."""
     compilation = ctx.attr.compilation[ProtoCompileInfo]
 
-    lib_rs = ctx.actions.declare_file("lib.rs")
+    lib_rs = ctx.actions.declare_file(ctx.attr.name + "_lib.rs")
 
     b = compilation.output_dirs.to_list()[0]
     f = ctx.attr.lib.files.to_list()[0]
