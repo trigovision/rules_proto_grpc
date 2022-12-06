@@ -37,5 +37,6 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
         crate_features = kwargs.get("crate_features"),
+        crate_root = name_lib,
     )
 
