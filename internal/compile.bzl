@@ -376,7 +376,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # Build copy command for directory outputs
         # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when
         # no service exists, so no files generated)
-        command_parts = ["mkdir -p {} && cp -r {} '{}'".format(
+        # Use -RL to follow symlinks and copy the file's content.
+        command_parts = ["mkdir -p {} && cp -rRL {} '{}'".format(
             # We need to be sure that the dirs exist, see:
             # https://github.com/bazelbuild/bazel/issues/6393
             " ".join(["'" + d.path + "'" for d in premerge_dirs]),
